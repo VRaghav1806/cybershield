@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "69a865ba21e139f8bab312e3",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Initial check clean.",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a711e1d6d0d36eeb4083ba",
+    "metadata": {
+      "reputation": {
+        "score": 30,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-04T17:02:50.114Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a865a121e139f8bab312af",
+    "type": "Phishing",
+    "severity": "Medium",
+    "description": "The URL contains an encoded redirect parameter \"__coig_login\" and a suspicious query string with \"onetap\" which may be an attempt to bypass Instagram's login page and harvest credentials. The use of a hash fragment (#) followed by a URL query might be used as a tactic to obfuscate the attack. The Machine Learning model initially predicted it as safe but it's still recommended to analyze the link for potential threats.",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a711e1d6d0d36eeb4083ba",
+    "metadata": {
+      "reputation": {
+        "score": 70,
+        "isBlacklisted": false,
+        "source": "AI Forensic Override"
+      }
+    },
+    "timestamp": "2026-03-04T17:02:25.938Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a865a121e139f8bab312ad",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Initial check clean.",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a711e1d6d0d36eeb4083ba",
+    "metadata": {
+      "reputation": {
+        "score": 30,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-04T17:02:25.705Z",
+    "__v": 0
+  }
+]

@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "CyberShield AI Scanner",
+    "version": "1.0",
+    "description": "Automatically scans visited links for phishing and threats via the local CyberShield Command Center.",
+    "permissions": [
+        "webNavigation",
+        "notifications",
+        "tabs",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>",
+        "http://localhost:5000/*",
+        "http://127.0.0.1:5000/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "CyberShield AI Scanner"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://localhost:5173/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-03-05T13:55:12.588Z",
+  "url": "http://secure-bank-login.tk",
+  "response": {
+    "isPhishing": true,
+    "alert": {
+      "type": "Phishing",
+      "severity": "High",
+      "description": "AI Analysis: Keyword 'secure-bank-login' and top-level domain '.tk' (.tk domains have a history of being used for malicious purposes) indicate a high likelihood of a phishing attempt.",
+      "url": "http://secure-bank-login.tk",
+      "status": "Active",
+      "userId": null,
+      "metadata": {
+        "reputation": {
+          "score": 100,
+          "isBlacklisted": true,
+          "source": "CyberShield Global Threat Feed (Simulated)"
+        }
+      },
+      "_id": "69a98b40da35c887014fc0f5",
+      "timestamp": "2026-03-05T13:55:12.562Z",
+      "__v": 0
+    },
+    "recommendations": [
+      "DO NOT enter any credentials or personal info on this site.",
+      "Close the tab immediately.",
+      "Run a full system antivirus scan.",
+      "Change passwords for any accounts that may have been compromised.",
+      "Enable Multi-Factor Authentication (MFA) on your sensitive accounts."
+    ],
+    "reputation": {
+      "score": 100,
+      "isBlacklisted": true,
+      "source": "CyberShield Global Threat Feed (Simulated)"
+    },
+    "mlOutputStr": "ML analysis skipped because URL is already flagged by Reputation Engine (Score: 100)."
+  }
+}

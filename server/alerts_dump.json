@@ -1,0 +1,254 @@
+[
+  {
+    "_id": "69aa5922775abd135348cf0b",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "http://172.16.16.16:8090/ips/block/webcat?cat=46&pl=1&lu=0&url=aHR0cDovL2xvZ2luLnZlcmlmeS5hY2NvdW50Lnh5ei8~",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:33:38.577Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa58fe775abd135348ceb4",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "http://172.16.16.16:8090/ips/block/webcat?cat=46&pl=1&lu=0&url=aHR0cDovL2xvZ2luLnZlcmlmeS5hY2NvdW50Lnh5ei8~",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:33:02.446Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa57b88c768b2be1de9f3e",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "http://172.16.16.16:8090/ips/block/webcat?cat=46&pl=1&lu=0&url=aHR0cDovL2xvZ2luLnZlcmlmeS5hY2NvdW50Lnh5ei8~",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:27:36.898Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa568502164ab045187358",
+    "type": "Phishing",
+    "severity": "High",
+    "description": "AI Analysis: Domain spoofing and suffix similarity with legitimate services (\"verify.account\" is a common pattern for login pages) along with lack of HTTPS and non-standard TLD (\"xyz\").",
+    "url": "http://login.verify.account.xyz",
+    "status": "Active",
+    "userId": null,
+    "metadata": {
+      "reputation": {
+        "score": 100,
+        "isBlacklisted": true,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:22:29.997Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa566802164ab04518733f",
+    "type": "Phishing",
+    "severity": "High",
+    "description": "AI Analysis: The URL appears to be a phishing attack by simulating an account verification process, potentially to harvest login credentials. The domain name \"verify.account\" and the repeated URL presence suggest a high likelihood of a phishing attempt. This URL has a high reputation score of 0 (assuming 100 being the best) because it was flagged by the Reputation Engine and the repeated occurrence indicates that the system is being tested or to harvest multiple logins.",
+    "url": "http://login.verify.account.xyz",
+    "status": "Active",
+    "userId": null,
+    "metadata": {
+      "reputation": {
+        "score": 100,
+        "isBlacklisted": true,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:22:00.379Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa560902164ab045187272",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "http://172.16.16.16:8090/ips/block/webcat?cat=46&pl=1&lu=0&url=aHR0cDovL2xvZ2luLnZlcmlmeS5hY2NvdW50Lnh5ei8~",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:20:25.912Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa55fc02164ab045187256",
+    "type": "Phishing",
+    "severity": "High",
+    "description": "AI Analysis: The URL contains a domain name `verify.account.xyz` which is a variation of legitimate login page domains, but its high reputation score of 0/100 (reversed for explanation purposes) strongly suggests it is a phishing attempt, attempting to trick users into entering sensitive information.",
+    "url": "http://login.verify.account.xyz",
+    "status": "Active",
+    "userId": null,
+    "metadata": {
+      "reputation": {
+        "score": 100,
+        "isBlacklisted": true,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:20:12.872Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa55e302164ab045187212",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "http://172.16.16.16:8090/ips/block/webcat?cat=46&pl=1&lu=0&url=aHR0cDovL2xvZ2luLnZlcmlmeS5hY2NvdW50Lnh5ei8~",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:19:47.102Z",
+    "__v": 0
+  },
+  {
+    "_id": "69aa557602164ab04518712a",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "devtools://devtools/bundled/worker_app.html?remoteBase=https://msedgedevtools.microsoft.com/serve_file/@de59ede99663129e87924961f3ae546d1d819793/&browserConnection=true&isFeedbackEnabled=true&msEdgeDevToolsMicroFeedback=true&isChatEnabled=true&msEdgeCSSCopilot=true&enabledExperiments=msEdgeDevToolsNetworkConsole;layersIn3DView;keyboardShortcutEditor;msEdgeVSCodeThemes;msEdgeDevToolsDetachedElements;msEdgeDynamicWelcome;msEdgeAIExplainConsoleError;msEdgeCSSCopilot",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-06T04:17:58.203Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a9d2ca5b037e4f3ccd0fea",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "google.com",
+    "status": "Active",
+    "userId": null,
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-05T19:00:26.248Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a9cc9312c6c9f2ef9e3a34",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "https://www.google.com/",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Trusted Host Whitelist"
+      }
+    },
+    "timestamp": "2026-03-05T18:33:55.957Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a9b796284fbe6273137ec5",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "https://www.youtube.com/",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-05T17:04:22.375Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a9b78b284fbe6273137eab",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "https://www.google.com/",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Trusted Host Whitelist"
+      }
+    },
+    "timestamp": "2026-03-05T17:04:11.797Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a9af3affffd431d73faa67",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Fast path safe",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a86c4321e139f8bab3180f",
+    "metadata": {
+      "reputation": {
+        "score": 0,
+        "isBlacklisted": false,
+        "source": "CyberShield Trusted Host Whitelist"
+      }
+    },
+    "timestamp": "2026-03-05T16:28:42.211Z",
+    "__v": 0
+  }
+]

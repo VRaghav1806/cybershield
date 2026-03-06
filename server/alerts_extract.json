@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "69a863c321e139f8bab31040",
+    "type": "Phishing",
+    "severity": "High",
+    "description": "The URL attempts to redirect the user to a suspicious page that includes a parameter '__coig_login' which may be a spoofed Instagram login page or a phishing attempt. The presence of a URL encoded '#' at the end may be an attempt to load malicious scripts or inject unwanted content. This is likely an Instagram login page spoofing attempt, especially considering the ML model predicted the URL is SAFE.",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a711e1d6d0d36eeb4083ba",
+    "metadata": {
+      "reputation": {
+        "score": 85,
+        "isBlacklisted": false,
+        "source": "AI Forensic Override"
+      }
+    },
+    "timestamp": "2026-03-04T16:54:27.741Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a863c321e139f8bab3103e",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Initial check clean.",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a711e1d6d0d36eeb4083ba",
+    "metadata": {
+      "reputation": {
+        "score": 30,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-04T16:54:27.700Z",
+    "__v": 0
+  },
+  {
+    "_id": "69a863c321e139f8bab3103c",
+    "type": "Safe",
+    "severity": "Low",
+    "description": "Initial check clean.",
+    "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fonetap%2F%3Fnext%3D%252F%26__coig_login%3D1#",
+    "status": "Active",
+    "userId": "69a711e1d6d0d36eeb4083ba",
+    "metadata": {
+      "reputation": {
+        "score": 30,
+        "isBlacklisted": false,
+        "source": "CyberShield Global Threat Feed (Simulated)"
+      }
+    },
+    "timestamp": "2026-03-04T16:54:27.690Z",
+    "__v": 0
+  }
+]

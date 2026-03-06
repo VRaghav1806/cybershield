@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-main: #050510;
+  --bg-surface: rgba(10, 10, 25, 0.85);
+  --card-bg: rgba(12, 15, 30, 0.55);
+  --sidebar-bg: rgba(8, 8, 20, 0.92);
+  --border: rgba(0, 255, 200, 0.08);
+  --border-dark: rgba(0, 255, 200, 0.12);
+  --border-glow: rgba(0, 200, 255, 0.15);
+  --accent-blue: #00d4ff;
+  --accent-purple: #8b5cf6;
+  --accent-teal: #00ffcc;
+  --accent-cyan: #06b6d4;
+  --accent-neon: #00ff88;
+  --text-primary: #e2e8f0;
+  --text-secondary: #64748b;
+  --text-inverse: #ffffff;
+  --text-inverse-sec: #a1a1aa;
+  --success: #00ff88;
+  --warning: #fbbf24;
+  --danger: #ff3366;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --glow-blue: 0 0 20px rgba(0, 212, 255, 0.15);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.15);
+  --glow-teal: 0 0 20px rgba(0, 255, 204, 0.1);
+  --bg-glow-1: rgba(0, 212, 255, 0.06);
+  --bg-glow-2: rgba(139, 92, 246, 0.05);
+  --bg-glow-3: rgba(0, 255, 136, 0.04);
+  --bg-grid-color: rgba(0, 212, 255, 0.03);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.4);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* === Cybersecurity Hex Grid Background === */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, var(--bg-glow-1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, var(--bg-glow-2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, var(--bg-glow-3) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle grid pattern overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--bg-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid-color) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* === Glass Cards === */
+.glass {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass:hover {
+  border-color: var(--border-glow);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(0, 212, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar glass */
+.glass-dark {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-dark);
+  color: var(--text-inverse);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* === Gradient Text === */
+.multicolor-text {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.multicolor-bg {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
+  color: white;
+}
+
+/* Cyber text glow */
+.cyber-glow {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+/* === Buttons === */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3), 0 0 40px rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* === Animations === */
+
+/* Stat card pulsing glow */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
+  }
+}
+
+.stat-card-glow:hover {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Spin for loaders */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scanline effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Border scan animation for cards */
+@keyframes borderScan {
+  0% {
+    border-color: rgba(0, 212, 255, 0.08);
+  }
+
+  50% {
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+
+  100% {
+    border-color: rgba(0, 212, 255, 0.08);
+  }
+}
+
+/* Data flow dots */
+@keyframes dataFlow {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+
+/* Neon status indicator pulse */
+@keyframes statusPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 4px currentColor, 0 0 8px currentColor;
+    opacity: 1;
+  }
+
+  50% {
+    box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+    opacity: 0.8;
+  }
+}
+
+.status-dot {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* === Table Styles === */
+table {
+  border-collapse: collapse;
+}
+
+thead tr {
+  border-bottom: 1px solid rgba(0, 212, 255, 0.08) !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(0, 212, 255, 0.03) !important;
+}
+
+/* === Input Styles === */
+input,
+textarea {
+  font-family: var(--font-main);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1);
+  outline: none;
+}
+
+/* === Selection Color === */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: white;
+}
