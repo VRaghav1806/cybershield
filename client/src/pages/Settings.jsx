@@ -10,10 +10,9 @@ const Settings = () => {
     const { currentTheme, setCurrentTheme, themes } = useTheme();
 
     React.useEffect(() => {
-        const savedSettings = localStorage.getItem('cybershield_settings');
-        if (savedSettings) {
-            const { strictMode: savedStrict } = JSON.parse(savedSettings);
-            setStrictMode(savedStrict);
+        const savedStrict = localStorage.getItem('strictMode');
+        if (savedStrict !== null) {
+            setStrictMode(savedStrict === 'true');
         }
         setLoading(false);
     }, []);
@@ -21,13 +20,13 @@ const Settings = () => {
     const handleSave = () => {
         setLoading(true);
         try {
-            const settings = { strictMode };
-            localStorage.setItem('cybershield_settings', JSON.stringify(settings));
+            localStorage.setItem('strictMode', strictMode.toString());
             
-            // Sync with extension if needed
-            window.postMessage({ type: 'SYNC_AUTH', strictMode }, '*');
+            // Sync with extension
+            console.log('[Dashboard] Syncing with extension:', strictMode);
+            window.postMessage({ type: 'SYNC_SETTINGS', strictMode }, '*');
 
-            alert('Settings saved locally!');
+            alert('Settings saved and synced with extension!');
         } catch (err) {
             console.error('Error saving settings:', err);
             alert(`Failed to save settings: ${err.message}`);
