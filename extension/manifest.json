@@ -25,7 +25,8 @@
         {
             "matches": [
                 "http://localhost:5173/*",
-                "https://cybershield-murex.vercel.app/*"
+                "https://cybershield-murex.vercel.app/*",
+                "https://*.vercel.app/*"
             ],
             "js": [
                 "content.js"

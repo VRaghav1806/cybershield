@@ -1,42 +1,33 @@
-// Listen for changes in localStorage and sync with the extension background script
-function syncAuthState() {
-    const token = localStorage.getItem('token');
-    const userStr = localStorage.getItem('user');
+console.log('[CyberShield] Content Script Loaded & Running');
 
-    if (token) {
-        let strictMode = false;
-        try {
-            if (userStr) {
-                const user = JSON.parse(userStr);
-                strictMode = !!user.strictMode;
-            }
-        } catch (e) {
-            console.error('[CyberShield] Error parsing user from localStorage', e);
-        }
-
-        chrome.runtime.sendMessage({
-            type: 'SYNC_AUTH',
-            token: token,
-            strictMode: strictMode
-        });
-    }
+function syncSettings() {
+    const strictModeStr = localStorage.getItem('strictMode');
+    const strictMode = strictModeStr === 'true' || strictModeStr === 'JSON.parse(true)';
+    
+    console.log('[CyberShield] Syncing Strict Mode:', strictMode);
+    chrome.runtime.sendMessage({
+        type: 'SYNC_AUTH',
+        strictMode: !!JSON.parse(strictModeStr || 'false')
+    });
 }
 
 // Initial sync
-syncAuthState();
+syncSettings();
 
-// Sync when storage changes (e.g. login/settings change)
-window.addEventListener('storage', (e) => {
-    if (e.key === 'token' || e.key === 'user') {
-        syncAuthState();
+// Listen for messages from the React app
+window.addEventListener('message', (event) => {
+    if (event.data.type === 'SYNC_SETTINGS') {
+        console.log('[CyberShield] Received Sync Message from App:', event.data);
+        chrome.runtime.sendMessage({ 
+            type: 'SYNC_AUTH', 
+            strictMode: !!event.data.strictMode 
+        });
     }
 });
 
-// Polyfill for internal React navigation that doesn't trigger 'storage' event
-const originalSetItem = localStorage.setItem;
-localStorage.setItem = function (key, value) {
-    originalSetItem.apply(this, arguments);
-    if (key === 'token' || key === 'user') {
-        syncAuthState();
+// Sync when storage changes
+window.addEventListener('storage', (e) => {
+    if (e.key === 'strictMode') {
+        syncSettings();
     }
-};
+});
