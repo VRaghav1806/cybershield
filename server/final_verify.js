@@ -2,7 +2,7 @@ const axios = require('axios');
 
 async function finalVerify() {
     const API_BASE = 'http://localhost:5000/api';
-    const TEST_URL = 'http://secure-bank-login.tk';
+    const TEST_URL = 'http://secure-bank-verify.icu';
 
     try {
         console.log(`--- Final Verification for: ${TEST_URL} ---`);
