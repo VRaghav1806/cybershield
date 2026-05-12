@@ -1,5 +1,5 @@
 console.log('[CyberShield] Background Service Worker INITIALIZING...');
-const API_URL = 'http://localhost:5000/api/threats/analyze';
+const API_URL = 'https://cybershield-server-a9wd.onrender.com/api/threats/analyze';
 
 
 let strictModeEnabled = false;
