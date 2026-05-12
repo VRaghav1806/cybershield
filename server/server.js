@@ -36,8 +36,11 @@ app.use((req, res, next) => {
 
 // Database Connection
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('MongoDB connection error:', err));
+    .then(() => console.log('🚀 SUCCESS: Connected to MongoDB Atlas'))
+    .catch(err => {
+        console.error('❌ ERROR: MongoDB connection failed!');
+        console.error('Reason:', err.message);
+    });
 
 // Routes
 app.use('/api/threats', require('./routes/threatRoutes'));
