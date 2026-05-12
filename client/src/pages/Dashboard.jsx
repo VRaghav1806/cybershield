@@ -48,12 +48,15 @@ const Dashboard = () => {
 
     useEffect(() => {
         const fetchDashboardData = async () => {
+            console.log(`[Dashboard] Fetching data from: ${API_BASE}`);
             try {
                 const riskRes = await axios.get(`${API_BASE}/threats/risk-score`);
+                console.log('[Dashboard] Risk Score:', riskRes.data);
                 setRiskScore(riskRes.data.riskScore);
                 setRiskStatus(riskRes.data.status);
 
                 const statsRes = await axios.get(`${API_BASE}/threats/stats`);
+                console.log('[Dashboard] Stats:', statsRes.data);
                 setStats({
                     totalScans: statsRes.data.totalScans,
                     threatsBlocked: statsRes.data.threatsBlocked,
@@ -80,6 +83,9 @@ const Dashboard = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', paddingBottom: '4rem', color: 'var(--text-primary)' }}>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textAlign: 'right', marginTop: '-1rem' }}>
+                📡 API Source: {API_BASE}
+            </div>
 
             {/* Top Section: Attack Surface & Score */}
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
