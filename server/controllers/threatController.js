@@ -238,7 +238,8 @@ exports.analyzeThreat = async (req, res) => {
 
         if (!isPhishing && !skipML && url && !url.includes('localhost') && !url.includes('chrome://')) {
             try {
-                const mlRes = await axios.post('http://127.0.0.1:5001/predict', { url });
+                const mlServiceUrl = process.env.ML_SERVICE_URL || 'http://127.0.0.1:5001';
+                const mlRes = await axios.post(`${mlServiceUrl}/predict`, { url });
                 if (mlRes.data && mlRes.data.prediction !== undefined) {
                     const isMalicious = mlRes.data.prediction === 1;
                     if (isMalicious) isPhishing = true; // Flag early to ensure it's caught

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Activity, Zap, Shield, Target, TrendingUp, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE from '../api';
 
 const SecurityScore = () => {
     const [stats, setStats] = useState(null);

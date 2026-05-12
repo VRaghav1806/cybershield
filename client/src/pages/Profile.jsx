@@ -4,7 +4,7 @@ import { User, Mail, Shield, Calendar, Edit2, Save, X, Activity, AlertTriangle, 
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE from '../api';
 
 const Profile = () => {
     const [user, setUser] = useState(null);

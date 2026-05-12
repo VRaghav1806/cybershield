@@ -3,7 +3,7 @@ import { Search, ShieldAlert, CheckCircle2, XCircle, Zap } from 'lucide-react';
 
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE from '../api';
 
 const Threats = () => {
     const [content, setContent] = useState('');

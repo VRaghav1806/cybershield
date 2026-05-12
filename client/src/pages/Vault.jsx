@@ -3,7 +3,7 @@ import { Lock, ShieldAlert, Archive, Trash2, ShieldCheck, Loader2 } from 'lucide
 import axios from 'axios';
 import { useToast } from '../context/ToastContext';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE from '../api';
 
 const Vault = () => {
     const [quarantinedItems, setQuarantinedItems] = useState([]);

@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Activity, ShieldAlert, TrendingUp, AlertCircle, CheckCircle, BarChart3 } from 'lucide-react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE from '../api';
 
 const StatCard = ({ icon, label, value, color }) => (
     <div className="glass" style={{ padding: '1.5rem', flex: 1, minWidth: '200px' }}>

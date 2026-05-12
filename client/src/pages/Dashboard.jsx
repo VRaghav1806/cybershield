@@ -4,7 +4,7 @@ import { Shield, Zap, AlertTriangle, Activity, Search, Video, Image as ImageIcon
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE from '../api';
 
 const MiniChart = ({ data, color, type = "area" }) => {
     // Always generate 10 bars with varied heights for a full, visible chart
