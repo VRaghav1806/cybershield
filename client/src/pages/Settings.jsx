@@ -10,65 +10,27 @@ const Settings = () => {
     const { currentTheme, setCurrentTheme, themes } = useTheme();
 
     React.useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    window.location.href = '/login';
-                    return;
-                }
-                const res = await axios.get('http://localhost:5000/api/auth/me', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                setStrictMode(res.data.strictMode);
-                setLoading(false);
-            } catch (err) {
-                console.error('Error fetching settings:', err);
-                if (err.response?.status === 401) {
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('user');
-                    window.location.href = '/login';
-                }
-                setLoading(false);
-            }
-        };
-        fetchSettings();
+        const savedSettings = localStorage.getItem('cybershield_settings');
+        if (savedSettings) {
+            const { strictMode: savedStrict } = JSON.parse(savedSettings);
+            setStrictMode(savedStrict);
+        }
+        setLoading(false);
     }, []);
 
-    const handleSave = async () => {
+    const handleSave = () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('You must be logged in to save settings.');
-                window.location.href = '/login';
-                return;
-            }
+            const settings = { strictMode };
+            localStorage.setItem('cybershield_settings', JSON.stringify(settings));
+            
+            // Sync with extension if needed
+            window.postMessage({ type: 'SYNC_AUTH', strictMode }, '*');
 
-            const res = await axios.put('http://localhost:5000/api/auth/settings',
-                { strictMode },
-                { headers: { 'Authorization': `Bearer ${token}` } }
-            );
-
-            const updatedUser = res.data;
-            const currentUserStr = localStorage.getItem('user');
-            if (currentUserStr) {
-                const currentUser = JSON.parse(currentUserStr);
-                const newUser = { ...currentUser, strictMode: updatedUser.strictMode };
-                localStorage.setItem('user', JSON.stringify(newUser));
-            } else {
-                localStorage.setItem('user', JSON.stringify(updatedUser));
-            }
-
-            alert('Settings saved successfully!');
+            alert('Settings saved locally!');
         } catch (err) {
             console.error('Error saving settings:', err);
-            const errorMsg = err.response?.data?.message || err.message;
-            alert(`Failed to save settings: ${errorMsg}`);
-
-            if (err.response?.status === 401) {
-                window.location.href = '/login';
-            }
+            alert(`Failed to save settings: ${err.message}`);
         } finally {
             setLoading(false);
         }

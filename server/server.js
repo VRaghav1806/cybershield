@@ -40,7 +40,6 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/threats', require('./routes/threatRoutes'));
 app.use('/api/ai', require('./routes/aiRoutes'));
 

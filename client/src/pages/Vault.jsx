@@ -31,10 +31,7 @@ const Vault = () => {
 
     const handleArchive = async (id) => {
         try {
-            const token = localStorage.getItem('token');
-            await axios.patch(`${API_BASE}/threats/${id}/status`, { status: 'Resolved' }, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            await axios.patch(`${API_BASE}/threats/${id}/status`, { status: 'Resolved' });
             addToast('Vault Updated', 'Threat has been moved to archive.', 'info');
             fetchVaultData();
         } catch (err) {
@@ -45,10 +42,7 @@ const Vault = () => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to permanently purge this threat payload?')) return;
         try {
-            const token = localStorage.getItem('token');
-            await axios.delete(`${API_BASE}/threats/${id}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            await axios.delete(`${API_BASE}/threats/${id}`);
             addToast('Payload Purged', 'Threat has been permanently removed from system storage.', 'info');
             fetchVaultData();
         } catch (err) {

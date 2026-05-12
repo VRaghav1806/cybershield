@@ -18,13 +18,7 @@ import { ToastProvider } from './context/ToastContext';
 import { ThemeProvider } from './context/ThemeContext';
 import NotificationManager from './components/NotificationManager';
 
-const ProtectedRoute = ({ children }) => {
-    const isAuthenticated = !!localStorage.getItem('token');
-    return isAuthenticated ? children : <Navigate to="/login" replace />;
-};
-
 const App = () => {
-    const isAuthenticated = !!localStorage.getItem('token');
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
@@ -56,43 +50,41 @@ const App = () => {
                         }} />
 
                         <div style={{ zIndex: 1, display: 'flex', width: '100%' }}>
-                            {isAuthenticated && <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />}
+                            <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
                             <NotificationManager />
-                            <main style={{ marginLeft: isAuthenticated && isSidebarOpen ? '260px' : '0', flex: 1, padding: '2rem', transition: 'margin 0.3s ease' }}>
-                                {isAuthenticated && (
-                                    <header style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                                            <button
-                                                onClick={() => setIsSidebarOpen(true)}
-                                                style={{ background: 'none', border: 'none', color: 'var(--accent-blue)', cursor: 'pointer', display: isSidebarOpen ? 'none' : 'block' }}
-                                            >
-                                                <Menu size={28} />
-                                            </button>
-                                            <div>
-                                                <h1 style={{ fontSize: '1.8rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-teal))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>CyberShield Command Center</h1>
-                                                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', letterSpacing: '0.5px' }}>AI-Powered Security Monitoring</p>
-                                            </div>
+                            <main style={{ marginLeft: isSidebarOpen ? '260px' : '0', flex: 1, padding: '2rem', transition: 'margin 0.3s ease' }}>
+                                <header style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                                        <button
+                                            onClick={() => setIsSidebarOpen(true)}
+                                            style={{ background: 'none', border: 'none', color: 'var(--accent-blue)', cursor: 'pointer', display: isSidebarOpen ? 'none' : 'block' }}
+                                        >
+                                            <Menu size={28} />
+                                        </button>
+                                        <div>
+                                            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-teal))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>CyberShield Command Center</h1>
+                                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', letterSpacing: '0.5px' }}>AI-Powered Security Monitoring</p>
                                         </div>
-                                        <div className="glass" style={{ padding: '8px 16px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '10px', borderColor: 'rgba(0, 255, 136, 0.15)' }}>
-                                            <div className="status-dot" style={{ width: '8px', height: '8px', background: 'var(--success)', borderRadius: '50%', color: 'var(--success)' }}></div>
-                                            <span style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--success)', letterSpacing: '0.3px' }}>Secure Pipeline Active</span>
-                                        </div>
-                                    </header>
-                                )}
+                                    </div>
+                                    <div className="glass" style={{ padding: '8px 16px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '10px', borderColor: 'rgba(0, 255, 136, 0.15)' }}>
+                                        <div className="status-dot" style={{ width: '8px', height: '8px', background: 'var(--success)', borderRadius: '50%', color: 'var(--success)' }}></div>
+                                        <span style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--success)', letterSpacing: '0.3px' }}>Secure Pipeline Active</span>
+                                    </div>
+                                </header>
+
                                 <div style={{ position: 'relative', zIndex: 2 }}>
                                     <Routes>
-                                        <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />} />
-                                        <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/" replace />} />
-                                        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                                        <Route path="/threats" element={<ProtectedRoute><Threats /></ProtectedRoute>} />
-                                        <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
-                                        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-                                        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-                                        <Route path="/vault" element={<ProtectedRoute><Vault /></ProtectedRoute>} />
-                                        <Route path="/score" element={<ProtectedRoute><SecurityScore /></ProtectedRoute>} />
+                                        <Route path="/" element={<Dashboard />} />
+                                        <Route path="/threats" element={<Threats />} />
+                                        <Route path="/analytics" element={<Analytics />} />
+                                        <Route path="/settings" element={<Settings />} />
+                                        <Route path="/profile" element={<Profile />} />
+                                        <Route path="/vault" element={<Vault />} />
+                                        <Route path="/score" element={<SecurityScore />} />
+                                        <Route path="*" element={<Navigate to="/" replace />} />
                                     </Routes>
                                 </div>
-                                {isAuthenticated && <AiAssistant />}
+                                <AiAssistant />
                             </main>
                         </div>
                     </div>

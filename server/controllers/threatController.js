@@ -161,11 +161,11 @@ exports.analyzeThreat = async (req, res) => {
 
 
         // Deduplication Logic
-        const userId = req.user ? req.user.id.toString() : 'anonymous';
+        const userId = 'system';
         const cacheKey = `${userId}-${url}`;
         const now = Date.now();
 
-        console.log(`[Backend] Analyze requested by user: ${userId} (Strict Mode: ${req.user?.strictMode})`);
+        console.log(`[Backend] Analyze requested for URL: ${url}`);
 
 
         // 1. Check in-memory cache (Fastest)
@@ -181,7 +181,6 @@ exports.analyzeThreat = async (req, res) => {
         const duplicateWindow = new Date(Date.now() - SERVER_SCAN_COOLDOWN);
         const existingAlert = await Alert.findOne({
             url: url,
-            userId: req.user ? req.user.id : null,
             timestamp: { $gte: duplicateWindow }
         }).sort({ timestamp: -1 });
 
@@ -202,7 +201,7 @@ exports.analyzeThreat = async (req, res) => {
             const result = {
                 isPhishing: existingAlert.type === 'Phishing',
                 alert: existingAlert,
-                block: existingAlert.type === 'Phishing' && (req.user && req.user.strictMode === true),
+                block: false, // Handle blocking client-side based on strictMode
                 recommendations: getSecurityRecommendations(existingAlert.type, existingAlert.severity),
                 reputation: reputation
             };
@@ -324,7 +323,7 @@ exports.analyzeThreat = async (req, res) => {
                 severity: severity,
                 description: aiReasoning,
                 url: url,
-                userId: req.user ? req.user.id : null,
+                userId: 'system',
                 metadata: { reputation } // Ensure metadata is saved
             });
             savedAlert = await alert.save();
@@ -332,7 +331,7 @@ exports.analyzeThreat = async (req, res) => {
             console.log(`[Backend] Skipping alert save for Safe MSN URL: ${url}`);
         }
 
-        const block = !!(isPhishing && req.user && req.user.strictMode === true);
+        const block = false; // Blocking handled by client/extension based on local strictMode setting
         const recommendations = getSecurityRecommendations(isPhishing ? 'Phishing' : 'Safe', severity);
 
 
@@ -365,8 +364,8 @@ exports.getStats = async (req, res) => {
         const totalScans = await Alert.countDocuments();
         const threatsBlocked = await Alert.countDocuments({ type: 'Phishing' });
 
-        // Active Shields could represent unique user interactions or a derived metric
-        const activeShields = await Alert.distinct('userId').then(users => users.length + 1200); // Base count + dynamic
+        // Active Shields: Constant for demo or dynamic based on total scans
+        const activeShields = 1200 + Math.floor(totalScans / 10);
 
         // Calculate Uptime (simulated based on first scan or a fixed high value for demo)
         const firstScan = await Alert.findOne().sort({ timestamp: 1 });

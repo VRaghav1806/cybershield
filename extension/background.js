@@ -2,43 +2,37 @@ console.log('[CyberShield] Background Service Worker INITIALIZING...');
 const API_URL = 'http://localhost:5000/api/threats/analyze';
 
 
-let userToken = null;
 let strictModeEnabled = false;
 
 // Scan cache to prevent multiple scans for the same URL in a short period
-// (Still useful as backup, but webNavigation should handle most cases)
 const recentScans = new Map();
-const SCAN_COOLDOWN = 3000; // Reduced to 3 seconds for better responsiveness
+const SCAN_COOLDOWN = 3000;
 
 // Function to refresh state from storage
 const refreshState = () => {
     return new Promise((resolve) => {
-        chrome.storage.local.get(['userToken', 'strictModeEnabled'], (result) => {
-            if (result.userToken) userToken = result.userToken;
+        chrome.storage.local.get(['strictModeEnabled'], (result) => {
             if (result.strictModeEnabled !== undefined) strictModeEnabled = result.strictModeEnabled;
             resolve();
         });
     });
 };
 
-// Listen for authentication sync from the content script
+// Listen for settings sync from the dashboard
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'SYNC_AUTH') {
-        userToken = message.token;
         strictModeEnabled = !!message.strictMode;
-        console.log('[CyberShield] Auth synced from dashboard. Strict Mode:', strictModeEnabled);
-
-        // Persist to storage
-        chrome.storage.local.set({ userToken, strictModeEnabled });
+        console.log('[CyberShield] Settings synced. Strict Mode:', strictModeEnabled);
+        chrome.storage.local.set({ strictModeEnabled });
     }
 });
 
 // Load on startup
 refreshState();
 
-// Heartbeat to keep service worker alive and confirm it's running
+// Heartbeat
 setInterval(() => {
-    console.log(`[CyberShield] Heartbeat - Auth: ${!!userToken}, StrictMode: ${strictModeEnabled}`);
+    console.log(`[CyberShield] Heartbeat - StrictMode: ${strictModeEnabled}`);
 }, 30000);
 
 
@@ -125,9 +119,6 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
 
     try {
         const headers = { 'Content-Type': 'application/json' };
-        if (userToken) {
-            headers['Authorization'] = `Bearer ${userToken}`;
-        }
 
         const response = await fetch(API_URL, {
             method: 'POST',

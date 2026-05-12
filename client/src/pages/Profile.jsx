@@ -18,9 +18,6 @@ const Profile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem('token');
-                const headers = token ? { Authorization: `Bearer ${token}` } : {};
-
                 const [statsRes, alertsRes] = await Promise.all([
                     axios.get(`${API_BASE}/threats/stats`),
                     axios.get(`${API_BASE}/threats/alerts`)
@@ -28,27 +25,23 @@ const Profile = () => {
                 setStats(statsRes.data);
                 setAlerts(alertsRes.data);
 
-                if (token) {
-                    try {
-                        const profileRes = await axios.get(`${API_BASE}/auth/me`, { headers });
-                        setUser(profileRes.data);
-                        setEditUsername(profileRes.data.username);
-                    } catch (err) {
-                        console.error('Profile fetch failed:', err);
-                        if (err.response?.status === 401) {
-                            localStorage.removeItem('token');
-                            localStorage.removeItem('user');
-                            window.location.href = '/login';
-                        }
-                        setUser({ username: 'Admin User', email: 'admin@cybershield.ai', role: 'guest', createdAt: new Date().toISOString() });
-                        setEditUsername('Admin User');
-                    }
-                } else {
-                    window.location.href = '/login';
-                }
+                // No more auth/me, use generic profile
+                setUser({ 
+                    username: 'CyberShield Admin', 
+                    email: 'system@cybershield.ai', 
+                    role: 'Administrator', 
+                    createdAt: '2026-01-01T00:00:00Z' 
+                });
+                setEditUsername('CyberShield Admin');
             } catch (err) {
-                setUser({ username: 'Admin User', email: 'admin@cybershield.ai', role: 'admin', createdAt: new Date().toISOString() });
-                setEditUsername('Admin User');
+                console.error('Data fetch failed:', err);
+                setUser({ 
+                    username: 'System User', 
+                    email: 'admin@cybershield.ai', 
+                    role: 'Admin', 
+                    createdAt: new Date().toISOString() 
+                });
+                setEditUsername('System User');
             } finally {
                 setLoading(false);
             }

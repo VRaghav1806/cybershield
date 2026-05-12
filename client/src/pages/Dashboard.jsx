@@ -326,11 +326,7 @@ const AIAnalysisTool = () => {
         setLoading(true);
         setResult(null);
         try {
-            const token = localStorage.getItem('token');
-            const headers = {};
-            if (token) headers['Authorization'] = `Bearer ${token}`;
-
-            const res = await axios.post(`${API_BASE}/ai/analyze-url`, { url }, { headers });
+            const res = await axios.post(`${API_BASE}/ai/analyze-url`, { url });
             setResult(res.data);
         } catch (err) {
             setResult({ error: "Failed to perform AI analysis. Please check your connection." });
