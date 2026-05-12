@@ -83,17 +83,15 @@ const Dashboard = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', paddingBottom: '4rem', color: 'var(--text-primary)' }}>
-            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textAlign: 'right', marginTop: '-1rem' }}>
-                📡 API Source: {API_BASE}
-            </div>
+
 
             {/* Top Section: Attack Surface & Score */}
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
+            <div className="top-section-grid">
 
                 {/* Your Attack Surface */}
                 <div className="glass" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'rgba(20, 20, 30, 0.4)' }}>
                     <h2 style={{ fontSize: '1.4rem', fontWeight: '600', color: 'var(--text-primary)' }}>Your Attack Surface</h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', flex: 1 }}>
+                    <div className="stat-grid" style={{ flex: 1 }}>
 
                         {/* Card 1 */}
                         <motion.div
@@ -353,14 +351,14 @@ const AIAnalysisTool = () => {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'stretch' }}>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'stretch', flexWrap: 'wrap' }}>
                 <input
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="Enter URL to analyze (e.g., http://suspicious-site.com)"
                     style={{
-                        flex: 1,
+                        flex: '1 1 300px',
                         padding: '1.2rem 1.5rem',
                         background: 'rgba(0,0,0,0.2)',
                         border: '1px solid rgba(255,255,255,0.1)',
@@ -377,7 +375,7 @@ const AIAnalysisTool = () => {
                     onClick={handleAnalyze}
                     disabled={loading || !url}
                     style={{
-                        padding: '0 2.5rem',
+                        padding: '1.2rem 2.5rem',
                         background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                         color: 'white',
                         borderRadius: '12px',
@@ -390,7 +388,8 @@ const AIAnalysisTool = () => {
                         border: 'none',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        flex: '1 1 200px'
                     }}
                 >
                     {loading ? 'Analyzing...' : 'Initiate Deep Scan'}
@@ -398,7 +397,13 @@ const AIAnalysisTool = () => {
             </div>
 
             {result && !result.error && (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', animation: 'fadeIn 0.5s ease' }}>
+                <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+                    gap: '1.5rem', 
+                    marginTop: '2rem',
+                    animation: 'fadeIn 0.5s ease' 
+                }}>
                     <div style={{ padding: '1.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '16px', borderLeft: `6px solid ${result.isPhishing ? '#ef4444' : '#10b981'}` }}>
                         <h4 style={{ marginBottom: '1rem', color: result.isPhishing ? '#ef4444' : '#10b981', fontSize: '1.2rem' }}>
                             {result.isPhishing ? 'Threat Detected' : 'Scan Result: Safe'}

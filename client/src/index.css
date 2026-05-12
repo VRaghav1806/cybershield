@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   --bg-main: #050510;
   --bg-surface: rgba(10, 10, 25, 0.85);
   --card-bg: rgba(12, 15, 30, 0.55);
@@ -28,6 +29,44 @@
   --bg-glow-2: rgba(139, 92, 246, 0.05);
   --bg-glow-3: rgba(0, 255, 136, 0.04);
   --bg-grid-color: rgba(0, 212, 255, 0.03);
+}
+
+/* Mobile Responsive Breakpoint */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .glass {
+    padding: 1rem !important;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+}
+.top-section-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .top-section-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 * {

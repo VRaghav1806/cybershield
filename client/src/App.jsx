@@ -51,24 +51,51 @@ const App = () => {
 
                         <div style={{ zIndex: 1, display: 'flex', width: '100%' }}>
                             <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+                            
+                            {/* Mobile Overlay */}
+                            {isSidebarOpen && (
+                                <div 
+                                    onClick={() => setIsSidebarOpen(false)}
+                                    style={{
+                                        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+                                        background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)',
+                                        zIndex: 99, display: window.innerWidth < 768 ? 'block' : 'none'
+                                    }}
+                                />
+                            )}
+
                             <NotificationManager />
-                            <main style={{ marginLeft: isSidebarOpen ? '260px' : '0', flex: 1, padding: '2rem', transition: 'margin 0.3s ease' }}>
-                                <header style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <main style={{ 
+                                marginLeft: (isSidebarOpen && window.innerWidth >= 1024) ? '260px' : '0', 
+                                flex: 1, 
+                                padding: window.innerWidth < 768 ? '1rem' : '2rem', 
+                                transition: 'margin 0.3s ease',
+                                width: '100%',
+                                minWidth: 0
+                            }}>
+                                <header style={{ 
+                                    marginBottom: '2rem', 
+                                    display: 'flex', 
+                                    flexDirection: window.innerWidth < 640 ? 'column' : 'row',
+                                    justifyContent: 'space-between', 
+                                    alignItems: window.innerWidth < 640 ? 'flex-start' : 'center',
+                                    gap: '1.5rem'
+                                }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                                         <button
                                             onClick={() => setIsSidebarOpen(true)}
-                                            style={{ background: 'none', border: 'none', color: 'var(--accent-blue)', cursor: 'pointer', display: isSidebarOpen ? 'none' : 'block' }}
+                                            style={{ background: 'none', border: 'none', color: 'var(--accent-blue)', cursor: 'pointer', display: (isSidebarOpen && window.innerWidth >= 1024) ? 'none' : 'block' }}
                                         >
                                             <Menu size={28} />
                                         </button>
                                         <div>
-                                            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-teal))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>CyberShield Command Center</h1>
-                                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', letterSpacing: '0.5px' }}>AI-Powered Security Monitoring</p>
+                                            <h1 style={{ fontSize: window.innerWidth < 768 ? '1.4rem' : '1.8rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-teal))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>CyberShield</h1>
+                                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', letterSpacing: '0.5px' }} className="hide-mobile">AI-Powered Monitoring</p>
                                         </div>
                                     </div>
                                     <div className="glass" style={{ padding: '8px 16px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '10px', borderColor: 'rgba(0, 255, 136, 0.15)' }}>
-                                        <div className="status-dot" style={{ width: '8px', height: '8px', background: 'var(--success)', borderRadius: '50%', color: 'var(--success)' }}></div>
-                                        <span style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--success)', letterSpacing: '0.3px' }}>Secure Pipeline Active</span>
+                                        <div className="status-dot" style={{ width: '8px', height: '8px', background: 'var(--success)', borderRadius: '50%' }}></div>
+                                        <span style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--success)', letterSpacing: '0.3px' }}>SECURE PIPELINE</span>
                                     </div>
                                 </header>
 
