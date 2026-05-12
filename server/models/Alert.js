@@ -7,7 +7,7 @@ const alertSchema = new mongoose.Schema({
     url: { type: String }, // URL that was scanned
     status: { type: String, enum: ['Active', 'Resolved', 'Ignored'], default: 'Active' },
     timestamp: { type: Date, default: Date.now },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    userId: { type: String, default: 'system' },
     metadata: { type: Object, default: {} } // For reputation scores, AI markers, etc.
 });
 
